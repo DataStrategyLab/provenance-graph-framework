@@ -1,0 +1,6 @@
+.claude/settings.local.json
+AGENTS.override.md
+.venv/
+__pycache__/
+.env*
+.claude/plans/
