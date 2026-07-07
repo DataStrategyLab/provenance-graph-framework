@@ -8,7 +8,7 @@ they agree by design. Every claim here is scoped to v0.1.
 
 PGF v0.1 provides **cooperative-honesty provenance**: it is a faithful record of
 good-faith work by people and agents who are cooperating with the process. It
-raises the floor on defensibility and reproducibility of *process*. It documents
+raises the floor on defensibility and traceability of *process*. It documents
 that work was done a certain way by cooperating participants.
 
 It does **not** prove that the record was not altered afterward. `events.jsonl`

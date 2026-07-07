@@ -6,7 +6,7 @@ An open-source, language-agnostic, repo-native framework for making high-stakes 
 
 ## What PGF is (and is not)
 
-PGF records the provenance of work products and the process that produced them: claims, sources, evidence, reviews, approvals, and releases. It is not a content-credentials system. It does not sign media, embed C2PA manifests, or mark AI-generated content for EU AI Act Article 50 or California AI Transparency Act purposes. Those standards answer "where did this file come from and was it AI-generated." PGF answers "which evidence supports each claim in this deliverable, who reviewed it, and who approved its release." The two are complementary and PGF may reference content-credential metadata on sources in a future version.
+PGF records the provenance of work products and the process that produced them: claims, sources, evidence, reviews, approvals, and releases. It is not a content-credentials system. It does not sign media, embed C2PA manifests, or mark AI-generated content for EU AI Act Article 50 or California AI Transparency Act purposes (regulatory landscape as of July 2026). Those standards answer "where did this file come from and was it AI-generated." PGF answers "which evidence supports each claim in this deliverable, who reviewed it, and who approved its release." The two are complementary and PGF may reference content-credential metadata on sources in a future version.
 
 ## Integrity scope
 
