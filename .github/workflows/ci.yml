@@ -1,1 +1,10 @@
-# .github/workflows/ci.yml — (placeholder, Phase 2)
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "CI is a Phase 0 placeholder; the real lane (ruff, pytest, pgf check, materialize, determinism diff) lands in Phase 2 per PRD section 17."
