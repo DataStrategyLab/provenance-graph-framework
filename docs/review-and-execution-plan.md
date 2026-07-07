@@ -1,3 +1,5 @@
+> **Status: rationale record, not current guidance.** This is the July 6, 2026 review-and-execution plan that produced the A-number design decisions (A0.1, A1.x, ...). It is committed so those rationale references resolve in-repo. Where this document disagrees with `docs/build-plan.md` or `PGF-DECISION-LOG.md`, those govern. Regulatory claims here are as-of the review date (July 6, 2026) and MUST be re-verified before reuse (D8). Part D lists what the reviewer could not verify at the time; some items have since been resolved elsewhere.
+
 # PGF v0.3 Review: Blindspot Findings and Execution Plan
 
 **Reviewed document:** Provenance Graph Framework, Lean v0.1 PRD v0.3 (July 6, 2026)
