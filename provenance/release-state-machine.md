@@ -35,19 +35,20 @@ settled here.**
 
 Release is **blocked** unless every one of these holds:
 
-1. Every `high`- or `critical`-materiality claim is supported to a degree appropriate to its
-   `claim_type`:
-   - Empirical claim types (`factual`, `financial`, `market`, `technical`, `legal`, `policy`,
+1. Every ACTIVE `high`- or `critical`-materiality claim is supported to a degree appropriate to its
+   `claim_type`. A claim is ACTIVE for release-gate support if, at the release-check event's seq, its
+   latest replayed status is not a disposed state. In v0.1 the disposed statuses are `contradicted`
+   and `rejected` (per `claim.schema.json`); disposed claims are retained in the record for provenance
+   and are covered by condition 2, not this condition.
+   - An active empirical claim type (`factual`, `financial`, `market`, `technical`, `legal`, `policy`,
      `procedural`) MUST have at least one `supports` edge from an `evidence` node.
-   - A `recommendation`-type claim MUST be supported by either:
-     1. at least one direct `supports` edge from an `evidence` node, when the recommendation itself
-        asserts an empirical basis; or
-     2. a recommendation-support path: a passing `review.recorded` connected by a `reviewed_by` edge,
-        AND a graph-traceable `derived_from` or `overrides` path to at least one `high`/`critical`
-        claim that is itself evidence-supported.
+   - An active `recommendation`-type claim MUST be supported by either (1) a direct `supports` edge
+     from an `evidence` node, or (2) a passing `review.recorded` (via `reviewed_by`) plus a
+     graph-traceable `derived_from`/`overrides` path to an active, evidence-supported `high`/`critical`
+     claim.
 
-   Reviewer notes MAY explain the judgment but do NOT satisfy the gate by themselves. A recommendation
-   with a passing review but no graph-traceable path to an evidence-supported claim is NOT releasable.
+   Reviewer notes MAY explain the judgment but do NOT satisfy the gate. A disposed claim is NOT
+   required to carry support; an active claim with no support path is NOT releasable.
    See `materiality-policy.md`.
 2. Every contradiction has a recorded disposition (resolved, or an accepted `override`, or an
    explicit documented divergence).

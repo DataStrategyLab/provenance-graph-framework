@@ -16,5 +16,7 @@ example: `nodes.json`, `edges.json`, and `state.json` (the graph and release sta
 - **Phase 2's first materializer milestone regenerates these files** before any comparison/golden test
   is wired into CI.
 
-The `release-package/` subdirectory is likewise a placeholder for the Phase 4 `pgf export` output and
-is not populated yet.
+The `release-package/` subdirectory — and any release-package digests (`file_digests`) — are likewise
+Phase 4 `pgf export` outputs: empty/placeholder until the exporter exists, consistent with the
+`nodes.json` / `edges.json` / `state.json` placeholders above. No release package is materialized in
+Phase 1.
