@@ -1,1 +1,64 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/claim.schema.json",
+  "title": "Claim node",
+  "description": "A material statement that must be supported by evidence or marked unresolved. Carried in a claim.added event under payload.node. origin records honest human/machine attribution (D11/A1.4). Materialization is deterministic REPLAY of recorded history; claim extraction is NOT deterministic regeneration. TOLERANT v0 draft: additionalProperties is permissive; the locked enums below stay.",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_id",
+    "text",
+    "claim_type",
+    "materiality",
+    "confidence_band",
+    "status",
+    "origin"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID embedding the artifact ID, e.g. claim:association-board-brief-001:c014."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "text": { "type": "string", "minLength": 1 },
+    "claim_type": {
+      "type": "string",
+      "enum": ["factual", "legal", "policy", "technical", "market", "financial", "procedural", "recommendation"]
+    },
+    "materiality": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "confidence_band": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "verified"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "supported", "contradicted", "needs_review", "approved", "rejected"]
+    },
+    "origin": {
+      "type": "string",
+      "enum": ["human_authored", "agent_extracted", "hybrid"],
+      "description": "Who produced the claim: human_authored, agent_extracted, or hybrid (agent-proposed then human-edited)."
+    },
+    "extraction": {
+      "type": "object",
+      "description": "Optional attribution metadata for agent_extracted/hybrid claims. Records what proposed the claim; does not imply deterministic regeneration.",
+      "properties": {
+        "method": { "type": "string" },
+        "model": { "type": "string" },
+        "skill": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "source_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "requires_human_review": { "type": "boolean" },
+    "notes": { "type": "string" }
+  }
+}

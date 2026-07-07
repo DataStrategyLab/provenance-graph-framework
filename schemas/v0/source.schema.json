@@ -1,1 +1,46 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/source.schema.json",
+  "title": "Source node",
+  "description": "Where evidence came from, when it was retrieved, and how it was accessed (A1.3). retrieved_at and access are required so the stale-evidence release gate is decidable. Carried in a source.added event under payload.node. TOLERANT v0 draft: additionalProperties is permissive; the access enum stays.",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_id",
+    "retrieved_at",
+    "access"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID embedding the artifact ID, e.g. source:association-board-brief-001:s003."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source text was retrieved. Feeds the artifact freshness policy checked by pgf check (Phase 2)."
+    },
+    "access": {
+      "type": "string",
+      "enum": ["url", "paywalled", "internal_document", "interview", "dataset", "other"],
+      "description": "How the source was accessed."
+    },
+    "uri": {
+      "type": "string",
+      "description": "Optional locator. Not required and not fetched by the CLI."
+    },
+    "content_digest": {
+      "type": "string",
+      "description": "Optional SHA-256 of the retrieved text snapshot. A convenience for change detection, not an integrity control (D2)."
+    },
+    "snapshot_ref": {
+      "type": "string",
+      "description": "Optional path to a stored excerpt/snapshot within the artifact directory."
+    },
+    "title": { "type": "string" },
+    "citation": { "type": "string" }
+  }
+}

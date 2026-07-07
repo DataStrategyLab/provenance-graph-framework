@@ -1,1 +1,92 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/graph-event.schema.json",
+  "title": "Graph event (envelope)",
+  "description": "One append-only event line in events.jsonl. The envelope is the durable unit of record. payload carries an optional node OR edge record (under payload.node / payload.edge) plus event-specific sibling fields; see provenance/event-taxonomy.md and provenance/graph-model.md. TOLERANT v0 draft: additionalProperties is permissive; the only hard constraints are the locked patterns and the tool.runtime enum.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "event_id",
+    "artifact_id",
+    "seq",
+    "ts",
+    "actor",
+    "event_type",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version string, e.g. 0.1.0."
+    },
+    "event_id": {
+      "type": "string",
+      "description": "Globally unique event identity. MUST be a ULID (see provenance/event-taxonomy.md). Not regex-enforced in v0.1 to keep the loose phase tolerant; the ULID requirement is normative in the docs."
+    },
+    "artifact_id": {
+      "type": "string",
+      "description": "The artifact this event belongs to. Under the single-writer assumption, seq is monotonic per artifact_id."
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonic per-artifact order key. Under the documented single-writer assumption, seq is dense, gap-free, and equals creation order. A seq collision is a detectable integrity error (see provenance/event-taxonomy.md)."
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC event timestamp (RFC 3339 / ISO 8601)."
+    },
+    "actor": {
+      "type": "string",
+      "pattern": "^(human|agent|service):[A-Za-z0-9._:-]+$",
+      "description": "Typed-prefix actor ID: human:, agent:, or service:. An agent acting for a person records the delegation in actor_detail.on_behalf_of."
+    },
+    "actor_detail": {
+      "type": "object",
+      "description": "Optional extension point for actor metadata and future signed-identity assertions.",
+      "properties": {
+        "display_name": { "type": "string" },
+        "runtime": { "type": "string" },
+        "on_behalf_of": {
+          "type": "string",
+          "pattern": "^(human|service):[A-Za-z0-9._:-]+$",
+          "description": "Delegation: the human or service this actor is acting for."
+        }
+      },
+      "additionalProperties": true
+    },
+    "event_type": {
+      "type": "string",
+      "pattern": "^[a-z_]+\\.[a-z_]+$",
+      "description": "Dotted type, e.g. claim.added. Validated by pattern here; the canonical registry lives in provenance/event-taxonomy.md and is enforced by the materializer (Phase 2), not by this schema."
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event body. Record-creating events carry the node record under payload.node or the edge record under payload.edge, alongside event-specific sibling fields (reason, prior_status, superseded_id, detection_method, changed_fields, target_id, notes). Permissive object in v0.1."
+    },
+    "tool": {
+      "type": "object",
+      "description": "Optional runtime/tooling metadata for the event.",
+      "properties": {
+        "runtime": {
+          "type": "string",
+          "enum": ["human", "claude_code", "codex", "ci", "other"]
+        },
+        "session_id": { "type": "string" },
+        "tool_name": { "type": "string" },
+        "trace_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$",
+          "description": "W3C Trace Context trace-id: 16 bytes, lowercase hex. Correlation pointer into an OTel trace, not an identity. An all-zero value is invalid per W3C Trace Context (documented, not regex-enforced in v0.1)."
+        },
+        "span_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$",
+          "description": "W3C Trace Context span-id: 8 bytes, lowercase hex. An all-zero value is invalid per W3C Trace Context (documented, not regex-enforced in v0.1)."
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

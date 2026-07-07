@@ -1,1 +1,39 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/release.schema.json",
+  "title": "Release node",
+  "description": "The exported release-package record for an artifact. Carried in a release.exported event under payload.node. A release presupposes a prior human approval event and passing checks; this node does not itself authorize release. TOLERANT v0 draft: additionalProperties is permissive.",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_id",
+    "released_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID embedding the artifact ID, e.g. release:association-board-brief-001:rel001."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "released_at": { "type": "string", "format": "date-time" },
+    "channel": {
+      "type": "string",
+      "description": "Where the package was released, e.g. board_portal."
+    },
+    "package_ref": {
+      "type": "string",
+      "description": "Path or identifier of the exported release package."
+    },
+    "approval_ref": {
+      "type": "string",
+      "description": "Node ID of the approval that authorized this release."
+    },
+    "file_digests": {
+      "type": "object",
+      "description": "Optional map of packaged file path to SHA-256 digest. Recorded as a CONVENIENCE for change detection, NOT as an integrity control or chain of custody: the event log is plaintext and editable in v0.1 (see AGENTS.md integrity scope, D2/D6).",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

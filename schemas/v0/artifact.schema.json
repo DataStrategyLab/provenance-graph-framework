@@ -1,1 +1,44 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/artifact.schema.json",
+  "title": "Governed artifact node",
+  "description": "The governed work product. Carried in an artifact.created event under payload.node. TOLERANT v0 draft: additionalProperties is permissive; only the classification and status enums are locked (PRD 10.1).",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_type",
+    "title",
+    "audience",
+    "classification",
+    "status",
+    "created_at",
+    "owner"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID; embeds the artifact ID, e.g. artifact:association-board-brief-001. Embedding rule documented in provenance/graph-model.md; enforced by ids.py in Phase 2, not regex-enforced here."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_type": {
+      "type": "string",
+      "description": "e.g. association_board_brief."
+    },
+    "title": { "type": "string" },
+    "audience": { "type": "string" },
+    "classification": {
+      "type": "string",
+      "enum": ["public", "internal", "confidential", "cui_possible"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["intake", "drafting", "verification", "review", "approved", "released", "archived"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "owner": {
+      "type": "string",
+      "description": "Accountable human. SHOULD be a typed actor ID (human:...); not pattern-enforced in v0.1 to keep the loose phase tolerant."
+    }
+  }
+}
