@@ -35,12 +35,13 @@ matters to the reader's decision), distinct from **confidence** (how well-suppor
 The release gate (see `release-state-machine.md`) treats materiality as the trigger for evidentiary
 rigor:
 
-- Every `high`- or `critical`-materiality claim MUST be supported to a degree appropriate to its
-  `claim_type`, per `release-state-machine.md` §2 condition 1: empirical claim types need a direct
-  `supports` edge from an `evidence` node; a `recommendation`-type claim needs either a direct
-  `supports` edge or the recommendation-support path (a passing review via `reviewed_by` plus a
-  graph-traceable `derived_from`/`overrides` path to an evidence-supported high/critical claim). An
-  inadequately supported high/critical claim is release-blocking.
+- Every ACTIVE `high`- or `critical`-materiality claim MUST be supported to a degree appropriate to
+  its `claim_type`, per `release-state-machine.md` §2 condition 1, which is the authoritative rule.
+  A claim is ACTIVE if, at the release-check event's seq, its latest replayed status is not a
+  disposed state (`contradicted` or `rejected`). Disposed claims are retained for provenance and are
+  covered by the contradiction-disposition condition (release-state-machine.md §2 condition 2), NOT
+  the support gate. See release-state-machine.md §2 for the full empirical-vs-recommendation support
+  rule; this section does not restate it, to keep a single source of truth.
 - Every contradiction touching a `high`/`critical` claim MUST have a recorded disposition.
 - `high`/`critical` claims are subject to the source-freshness check (see `source-hierarchy.md` §3).
 
