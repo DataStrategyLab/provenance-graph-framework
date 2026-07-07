@@ -14,9 +14,10 @@ values). A conforming artifact's `status` moves through:
 intake -> drafting -> verification -> review -> approved -> released -> archived
 ```
 
-`released` and `archived` are terminal. A conforming transition MUST move forward through the machine
-or record an explicit, reasoned step-back — for example `review -> verification` when a review
-escalates. Transitions are recorded as `artifact.updated` events; the materializer replays them in
+`archived` is the sole terminal state and has no outgoing transitions. `released` is terminal for the
+normal release flow except for a single permitted post-release transition, `released -> archived`
+(archival after release). A conforming transition MUST move forward through the machine or record an
+explicit, reasoned step-back — for example `review -> verification` when a review escalates. Transitions are recorded as `artifact.updated` events; the materializer replays them in
 `seq` order.
 
 **Non-normative workflow narrative.** The PRD's fuller lifecycle prose mentions finer stages —
