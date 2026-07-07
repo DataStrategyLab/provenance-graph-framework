@@ -1,0 +1,14 @@
+Provenance Graph Framework (PGF)
+Copyright 2026 Data Strategy Lab LLC
+
+This product is licensed under the Apache License, Version 2.0 (the "License");
+you may not use this product except in compliance with the License. A copy of
+the License is included in the LICENSE file in the root of this repository, and
+is also available at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+This NOTICE file is provided for attribution in accordance with Section 4(d) of
+the License. Portions of this repository (documentation and examples) may be
+made available under Apache-2.0 or CC-BY-4.0; see individual files for details.
+Examples are synthetic and contain no real client data.
