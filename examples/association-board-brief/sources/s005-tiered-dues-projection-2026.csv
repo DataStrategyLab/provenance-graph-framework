@@ -1,0 +1,4 @@
+source_label,model_basis,scenario,standard_member_count,small_org_member_count,standard_current_dues_usd,small_org_current_dues_usd,standard_projected_dues_usd,small_org_projected_dues_usd,projected_attrition_pct,projected_revenue_before_attrition_usd,projected_revenue_after_attrition_usd,no_change_revenue_after_attrition_usd,net_revenue_vs_no_change_usd,revenue_gap_usd,gap_surplus_usd,gap_closed
+SYNTHETIC-EXAMPLE,full_loss_scenario_comparison,no_change,2000,1000,800,400,800,400,3,2000000,1940000,1940000,0,82000,-82000,false
+SYNTHETIC-EXAMPLE,full_loss_scenario_comparison,flat_increase,2000,1000,800,400,920,460,22,2300000,1794000,1940000,-146000,82000,-228000,false
+SYNTHETIC-EXAMPLE,full_loss_scenario_comparison,tiered_increase,2000,1000,800,400,880,420,7,2180000,2027400,1940000,87400,82000,5400,true

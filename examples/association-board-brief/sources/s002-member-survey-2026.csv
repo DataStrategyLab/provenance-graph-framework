@@ -1,0 +1,4 @@
+source_label,dues_scenario,standard_pct,small_org_pct,would_not_renew_pct,sample_n
+SYNTHETIC-EXAMPLE,no_change,0,0,3,400
+SYNTHETIC-EXAMPLE,flat_increase,15,15,22,400
+SYNTHETIC-EXAMPLE,tiered_increase,10,5,7,400

@@ -1,1 +1,40 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/review.schema.json",
+  "title": "Review node",
+  "description": "A recorded review of an artifact or a specific claim by a reviewer role. Carried in a review.recorded event under payload.node. A review is not an approval; only a human approval event (see approval.schema.json) authorizes release. TOLERANT v0 draft: additionalProperties is permissive; decision is an open string in v0.1 (it does not trace to a locked decision or a PRD node sketch), documented against candidate values, not enum-enforced.",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_id",
+    "reviewer",
+    "decision"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID embedding the artifact ID, e.g. review:association-board-brief-001:r001."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "reviewer": {
+      "type": "string",
+      "description": "Typed actor ID of the reviewer. SHOULD match the actor pattern; not pattern-enforced here in v0.1."
+    },
+    "decision": {
+      "type": "string",
+      "description": "Review outcome. v0.1 candidate values (documented in provenance/graph-model.md or release-state-machine.md, not enum-enforced here): pass, warn, fail, escalate. Enum freeze deferred to phase-end."
+    },
+    "role": {
+      "type": "string",
+      "description": "The review role satisfied, e.g. plain_language, accessibility, materiality, confidentiality."
+    },
+    "target_ref": {
+      "type": "string",
+      "description": "Node ID being reviewed (the artifact, a claim, etc.)."
+    },
+    "reviewed_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" }
+  }
+}

@@ -1,1 +1,35 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/edge.schema.json",
+  "title": "Edge",
+  "description": "A directed relationship between two nodes. Carried under payload.edge by edge.added and by semantic edge-bearing events (contradiction.detected, override.accepted); one edge is created by exactly one event (see provenance/graph-model.md). from/to accept any well-formed node ID, including endpoints outside the current artifact (A1.5); a future pgf check warns, does not fail, on cross-artifact endpoints. TOLERANT v0 draft: additionalProperties is permissive; type is an OPEN string documented against the six v0.1 values in graph-model.md, deliberately NOT hard-enum'd, for parity with the open event_type pattern.",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_id",
+    "type",
+    "from",
+    "to"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node/edge ID embedding the artifact ID, e.g. edge:association-board-brief-001:x004."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "type": {
+      "type": "string",
+      "description": "Edge type. The v0.1 registry (documented in provenance/graph-model.md, not enum-enforced here) is: supports, contradicts, derived_from, reviewed_by, overrides, released_as."
+    },
+    "from": {
+      "type": "string",
+      "description": "Source endpoint node ID (any well-formed node ID)."
+    },
+    "to": {
+      "type": "string",
+      "description": "Target endpoint node ID (any well-formed node ID)."
+    }
+  }
+}

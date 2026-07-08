@@ -1,1 +1,35 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/evidence.schema.json",
+  "title": "Evidence node",
+  "description": "A specific excerpt drawn from a source that bears on a claim. The claim-to-evidence relationship is expressed by supports/contradicts edges, not by fields here. Carried in an evidence.added event under payload.node. No PRD sketch existed; this is a minimal Phase 1 discovery shape. TOLERANT v0 draft: additionalProperties is permissive.",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "artifact_id",
+    "source_ref"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Node ID embedding the artifact ID, e.g. evidence:association-board-brief-001:e002."
+    },
+    "schema_version": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "source_ref": {
+      "type": "string",
+      "description": "Node ID of the source this evidence was drawn from."
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "The quoted or paraphrased text taken from the source."
+    },
+    "locator": {
+      "type": "string",
+      "description": "Where in the source, e.g. a page, section, row, or timestamp."
+    },
+    "retrieved_at": { "type": "string", "format": "date-time" },
+    "note": { "type": "string" }
+  }
+}
