@@ -1,0 +1,5 @@
+source_label,peer_label,size_band,standard_dues_usd,pct_vs_alliance
+SYNTHETIC-EXAMPLE,alliance_baseline,mid,500,0
+SYNTHETIC-EXAMPLE,peer_a,mid,600,20
+SYNTHETIC-EXAMPLE,peer_b,mid,560,12
+SYNTHETIC-EXAMPLE,peer_c,mid,610,22
