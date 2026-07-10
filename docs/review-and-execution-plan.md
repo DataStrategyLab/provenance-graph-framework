@@ -108,6 +108,8 @@ Emitting provenance events as OTel spans and letting a collector be the log is a
 **Task:** `seq` is monotonic per artifact, which silently assumes a single writer. Two agents or a human plus CI appending concurrently will collide. v0.1 keeps the single-writer assumption but states it out loud in event-taxonomy.md, and requires `event_id` to be a ULID (time-ordered, collision-resistant) so a future multi-writer merge has a total order to fall back on without renumbering history.
 **Recommendation:** Document the assumption, mandate ULID event IDs. **Dissent:** ULIDs add a dependency-shaped concept (implementable in 20 lines of stdlib, so no actual dependency). **Test:** Generate 10,000 event IDs in a tight loop across two processes; zero collisions, lexicographic order matches creation order within clock resolution.
 
+> **[Superseded 2026-07-06 — PGF-DECISION-LOG.md "A1.8 event ordering: seq is the order key, ULID is identity".]** The Test's "lexicographic order matches creation order" claim is dropped: under the single-writer assumption event order is given by seq (ULID is identity/rough-sortability only). Rationale above retained as historical record.
+
 ### A1.9 Event types: closed set, open pattern [design-for]
 **Files:** `schemas/v0/graph-event.schema.json`, `provenance/event-taxonomy.md`
 **Task:** Validate `event_type` with a pattern (`^[a-z_]+\.[a-z_]+$`) plus a documented registry in event-taxonomy.md, rather than a hard enum in the schema. The materializer rejects unknown types (that is a CLI decision), but the schema does not, so Next-phase additions (`evaluation.recorded` for the eval lane, `risk.added` for the GovCon pack) extend the registry without a schema version bump.
@@ -133,6 +135,8 @@ Emitting provenance events as OTel spans and letting a collector be the log is a
 > Schema `$id` convention: `$id` is a stable identifier, not a fetch URL. IDs use the tagged-release raw-content form (`.../refs/tags/vX.Y.Z/schemas/v0/<name>.schema.json`) so an ID names an immutable document. The CLI never resolves `$ref` over the network: `pgf validate` registers all bundled schemas from disk and fails with exit code 3 if a reference cannot be resolved locally. Cross-schema `$ref`s use relative paths. If DSL later wants rename-proof IDs, GitHub Pages at `datastrategylab.github.io` is the upgrade, requiring only an `$id` rewrite at a major version.
 
 **Recommendation:** Tag-form IDs plus mandatory local resolution. **Dissent:** Rewriting `$id` at each tag adds a release-script step. **Test:** New acceptance criterion: `pgf validate` and `pgf check` pass on the canonical example with networking disabled (run under `unshare -n` or equivalent in CI).
+
+> [Superseded as enacted — locked as D7 (PGF-PROJECT-CONTEXT.md §4) and shipped in the Phase 1 schemas.] The tag-form $id recommendation is now the settled convention. Observed: graph-event.schema.json carries $id https://raw.githubusercontent.com/DataStrategyLab/provenance-graph-framework/refs/tags/v0.0.0-dev/schemas/v0/graph-event.schema.json and all nine v0 schemas carry the same tag-form pattern with the schema filename varying (.../refs/tags/v0.0.0-dev/schemas/v0/<schema-name>.schema.json). This supersedes the PRD §9.6 main-pinning convention this finding targeted. Retained as historical rationale.
 
 ### A2.2 Release-package digests in the export path [v0.1 change]
 **Files:** `cli/pgf/core/materializer.py`, `cli/pgf/commands/export.py`, `schemas/v0/release.schema.json`, `templates/release-package-index.md`
