@@ -44,7 +44,7 @@ process/governance decisions.
 - [2026-07-07] Release node records only materialized fields; no claims about nonexistent packages
 - [2026-07-07] Release lifecycle events are human-authored checkpoints in Phase 1
 - [2026-07-07] Materialized fixtures are de-committed, not hand-authored
-- [2026-07-07] Source snapshots are committed and parser-visibly synthetic
+- [2026-07-07] Source snapshots are committed and parser-visibly synthetic (entry predates the third snapshot; s005-tiered-dues-projection-2026.csv was added by the [2026-07-07] 'Evidence excerpts must match committed source snapshots' decision; the complete committed set is the three files named in the baseline above)
 - [2026-07-07] A1.8 is exercised by a Phase 2 pgf check test, not by deforming the example
 - [2026-07-07] Evidence excerpts must match committed source snapshots
 - [2026-07-09] Phase 1 establishes the exercised model baseline; Phase 2 begins with an implementation freeze
@@ -101,6 +101,13 @@ numbering (the enumeration originated in the Phase 1 offline validation run). Ea
 home via its rule ID — this table is a reference, not a normative restatement. Each of the 21 primaries
 is tagged **PRIMARY**; item B10 (ET-6) is tagged **MINOR SUB-ITEM** (which is why 22 numbered rows carry
 21 primary invariants).
+
+This document is the authoritative in-repo enumeration of the Phase 2 pgf check invariant set. Each
+invariant's binding authority is the committed rule cited on its row; the example counts are verifiable
+directly from examples/association-board-brief/events.jsonl and the three committed source snapshots. The
+Phase 1 validation run in which this enumeration originated is historical provenance; its reports are
+phase-boundary outputs, deliberately untracked, and are not required to audit or amend this set.
+Amendments are made by decision-log entry.
 
 > **This 21-invariant checker set is distinct from the 21 consolidated acceptance criteria in
 > `docs/build-plan.md` section 6.** The two share the count **21 by coincidence**; they are different
