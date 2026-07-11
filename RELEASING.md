@@ -30,7 +30,7 @@ provenance — a faithful record of good-faith work. It is NOT tamper-evident** 
   integrity control** in an editable v0.1 log (D6). Tamper-evidence (an in-toto Statement in a DSSE
   envelope, signed) is a v1.0 option, not a v0.1 promise.
 - PGF is **work-product and process provenance, not a content-credentials or media-marking system** (not
-  C2PA, not EU AI Act Article 50 marking).
+  C2PA, not EU AI Act Article 50 marking) (regulatory framing as of 2026-07-10).
 
 ## Merge posture
 

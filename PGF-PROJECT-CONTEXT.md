@@ -11,7 +11,7 @@ When section 6 changes at a phase boundary, refresh every synchronized project c
 
 The Provenance Graph Framework is a language-agnostic, repo-native framework for governed AI-assisted work products. It makes claims, sources, evidence, reviews, approvals, and release state traceable from intake through release. The human-readable release packet is the deliverable; the provenance graph is the supporting infrastructure.
 
-PGF is work-product and process provenance. It is not a content-credentials or media-marking system (not C2PA, not EU AI Act Article 50 marking), and it is not an agent runtime.
+PGF is work-product and process provenance. It is not a content-credentials or media-marking system (not C2PA, not EU AI Act Article 50 marking) (regulatory framing as of 2026-07-10), and it is not an agent runtime.
 
 ---
 
@@ -27,7 +27,7 @@ Materialization is deterministic replay of a recorded history. Claim extraction 
 
 - PGF v0.1 is cooperative-honesty provenance, never tamper-evident. Never describe output as tamper-proof or chain-of-custody.
 - Materialization is deterministic replay, not deterministic regeneration. Never call PGF output "reproducible" without the replay qualifier.
-- PGF is work-product/process provenance, not a content-credentials or media-marking system (not C2PA, not EU AI Act Article 50 marking).
+- PGF is work-product/process provenance, not a content-credentials or media-marking system (not C2PA, not EU AI Act Article 50 marking) (regulatory framing as of 2026-07-10).
 - Regulatory facts live only in date-stamped docs and instruction files, never in schemas or gates. Every regulatory claim carries an as-of date; time-sensitive claims are web-verified, not trusted from memory.
 - Enforcement lives in tools (permissions, hooks, CLI, CI); guidance lives in prose.
 - No secrets, real client data, CUI, or privileged material in any example. Examples are synthetic or anonymized.

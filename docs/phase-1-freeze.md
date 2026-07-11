@@ -17,7 +17,9 @@ is **exercised, not frozen**. As merged at `b39d1d3` (PR #3):
 
 - `examples/association-board-brief` — a **50-event** append-only log, seq **1..50 dense**, materializing
   to **26 node records** and **11 edge records**, exercising **all 11 node types and all 6 edge types**
-  (counts independently verified by the offline harness; see `reports/phase1-ground-truth-inventory.md`).
+  (from the committed example: `examples/association-board-brief/events.jsonl` — the 50-event log these
+  counts materialize from — with the three committed source snapshots `sources/s002-member-survey-2026.csv`,
+  `sources/s004-peer-dues-benchmark.csv`, and `sources/s005-tiered-dues-projection-2026.csv`).
 - **9** tolerant v0 JSON schemas (`schemas/v0/`), **6** provenance model docs (`provenance/`), **1**
   synthetic worked example.
 
@@ -93,8 +95,9 @@ Approach settled; only implementation detail remains — kept out of the Bin B o
 ## 5. Phase 2 `pgf check` invariants
 
 The Phase 2 checker enforces **21 primary invariants**, consolidated at the Phase 1 → Phase 2 boundary
-and imported from the offline-harness analysis (`reports/phase1-offline-validation.md` Part 2, categories
-A–H) using **that source's own A1…H22 numbering**. Each invariant below is anchored to its authoritative
+and enumerated per the decision-log entry "[2026-07-10] Checker-invariant reconciliation: the 21 pgf check
+invariants are real (ground-truth reports)", grouped by categories A–H using that entry's own A1…H22
+numbering (the enumeration originated in the Phase 1 offline validation run). Each invariant below is anchored to its authoritative
 home via its rule ID — this table is a reference, not a normative restatement. Each of the 21 primaries
 is tagged **PRIMARY**; item B10 (ET-6) is tagged **MINOR SUB-ITEM** (which is why 22 numbered rows carry
 21 primary invariants).
@@ -125,7 +128,7 @@ is tagged **PRIMARY**; item B10 (ET-6) is tagged **MINOR SUB-ITEM** (which is wh
 | F18 | Source freshness / staleness | SH-6, MP-5, RSM-4 Cond-5 → source-hierarchy.md / materiality-policy.md / release-state-machine.md | [PRIMARY] | |
 | F19 | Accessibility/disclosure preflight + confidentiality/CUI clear | RSM-4 Cond-4/6 → release-state-machine.md | [PRIMARY] | |
 | G20 | Offline schema resolution (exit 3) | crit-16, PRD Phase-2 → build-plan §6 / PRD | [PRIMARY] | |
-| G21 | Exit-code + offender-naming contract | PRD §15.2 → docs/prd-v0_3.md §15.2 | [PRIMARY] | |
+| G21 | Exit-code + offender-naming contract | PRD §15.2 (exit codes); build-plan §6 criteria 4, 17, and 19 (offender naming) → docs/prd-v0_3.md §15.2, docs/build-plan.md §6 | [PRIMARY] | |
 | H22 | Excerpt/snapshot resolution rule | SH-1; integrity scope → source-hierarchy.md | [PRIMARY] | |
 
 ### Early-highlighted MUST-enforce subset (four)
