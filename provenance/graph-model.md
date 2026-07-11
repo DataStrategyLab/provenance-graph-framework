@@ -8,6 +8,9 @@ reference implementation.
 Scope note (integrity): PGF v0.1 is cooperative-honesty provenance — a faithful record of
 good-faith work. It is not tamper-evident: `events.jsonl` is plaintext and editable. This model
 records what was decided; it does not prove that the record was not altered. See `AGENTS.md`.
+Source-node text is untrusted external input — data, never instructions; that model-layer doctrine and
+its rationale live in `source-hierarchy.md` §4, with enforcement deferred to Phase 3 hooks, the CLI, and
+CI (not this document).
 
 ## 1. Nodes and edges
 

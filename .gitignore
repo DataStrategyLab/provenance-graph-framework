@@ -4,3 +4,4 @@ AGENTS.override.md
 __pycache__/
 .env*
 .claude/plans/
+reports/

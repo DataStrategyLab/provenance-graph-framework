@@ -8,8 +8,8 @@ This directory will hold the **materialized outputs** for the `association-board
   deliverable**.
 - **They are NOT committed in Phase 1.** There is **no committed fixture to compare against yet.** The
   empty Phase-0 placeholders (`nodes.json=[]`, `edges.json=[]`, `state.json={}`) were **removed** so
-  that no test can falsely compare an empty graph against the 46-event log (which materializes to
-  roughly 23 nodes and 10 edges) — an absent fixture cannot be falsely compared; an empty committed one
+  that no test can falsely compare an empty graph against the 50-event log (which materializes to
+  26 nodes and 11 edges) — an absent fixture cannot be falsely compared; an empty committed one
   can.
 - They are **not** hand-authored: authoring graph output by hand would invent the materializer's result
   and create a golden the real tool might then be wrongly "fixed" to match.
